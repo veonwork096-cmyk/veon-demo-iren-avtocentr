@@ -1,0 +1,18 @@
+---
+import Base from "../layouts/Base.astro";
+import CallButton from "../components/CallButton.astro";
+import { sto } from "../data/site";
+const home = import.meta.env.BASE_URL;
+---
+<Base lang="uk" title="Сторінку не знайдено | Ірен Автоцентр" description="Сторінку не знайдено. Поверніться на головну Ірен Автоцентр або зателефонуйте в СТО.">
+  <section id="not-found" class="hero theme-brown" aria-labelledby="nf-title">
+    <div class="container hero__copy">
+      <h1 id="nf-title" class="hero__title">Такої сторінки немає</h1>
+      <p class="hero__lead">Можливо, її ще не створено. Поверніться на головну або зателефонуйте нам.</p>
+      <div class="hero__actions">
+        <CallButton line={sto} label="Зателефонувати в СТО" />
+        <a class="btn btn--outline" href={home}><span class="btn__text"><span class="btn__label">На головну</span></span></a>
+      </div>
+    </div>
+  </section>
+</Base>

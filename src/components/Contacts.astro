@@ -1,0 +1,45 @@
+---
+import Icon from "./Icon.astro";
+import Phone from "./Phone.astro";
+import { lines, viber, address, hours } from "../data/site";
+---
+<section id="contacts" class="contacts theme-espresso" data-rec="W-R003,W-R007,W-R010" aria-labelledby="contacts-title">
+  <div class="container contacts__grid">
+    <h2 id="contacts-title" class="contacts__title">Контакти</h2>
+    <div class="contacts__main">
+    <ul class="contact-lines">
+      {lines.map((l) => (
+        <li>
+          <a class="contact-line" href={l.tel} data-rec="W-R003">
+            <span class="contact-line__digit" aria-hidden="true">{l.digit}</span>
+            <span class="contact-line__text">
+              <span class="contact-line__name">{l.name}{l.digit === "8" && ", також Viber"}</span>
+              <span class="contact-line__phone"><Phone phone={l.phone} digit={l.digit} /></span>
+            </span>
+            <Icon name="phone" class="contact-line__icon" size={24} />
+          </a>
+        </li>
+      ))}
+    </ul>
+    <a class="btn btn--outline contacts__viber" href={viber.href}><Icon name="chat" class="btn__icon" /><span class="btn__text"><span class="btn__label">Написати у Viber</span><span class="btn__phone">{viber.phone}</span></span></a>
+    </div>
+    <div class="contacts__side">
+      <div class="contacts__block">
+        <h3>Адреса</h3>
+        <p>{address.full}</p>
+        <a class="route-link" href={address.map} target="_blank" rel="noopener" data-rec="W-R007"><Icon name="pin" /><span>Прокласти маршрут</span><span class="visually-hidden"> (Google Maps, нова вкладка)</span></a>
+      </div>
+      <div class="contacts__block">
+        <h3>Години роботи</h3>
+        <dl class="hours">
+          <div><dt>{hours.week.full}</dt><dd>{hours.week.time}</dd></div>
+          <div><dt>{hours.saturday.full} ({hours.saturday.note})</dt><dd>{hours.saturday.time}</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  /* the label and the number stay whole; the number sits on its own line (sections.css) */
+  .contacts__viber { white-space: nowrap; }
+</style>

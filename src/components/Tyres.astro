@@ -1,0 +1,51 @@
+---
+import LineAside from "./LineAside.astro";
+import CallButton from "./CallButton.astro";
+import { tyres, tyrePrice, radii, storage, tyreServices, vehicleTypes, hours, formatPrice } from "../data/site";
+---
+<section id="tyres" class="line-block theme-espresso" data-rec="W-R003,W-R004" aria-labelledby="tyres-title">
+  <div class="container line-block__grid">
+    <LineAside line={tyres} />
+    <div class="line-block__body">
+      <h2 id="tyres-title" class="line-block__title">Шиномонтаж і зберігання шин</h2>
+
+      <figure class="rscale" data-reveal data-rec="W-R004">
+        <div class="rscale__ends">
+          <p class="rscale__end"><span class="rscale__from">від</span> <span class="price-num">{formatPrice(tyrePrice.from)}</span> грн <span class="rscale__r">{tyrePrice.fromRadius}</span></p>
+          <p class="rscale__end rscale__end--to"><span class="price-num">{formatPrice(tyrePrice.to)}</span> грн <span class="rscale__r">{tyrePrice.toRadius}</span></p>
+        </div>
+        <div class="rscale__track" aria-hidden="true">
+          <span class="rscale__fill"></span>
+          <ol class="rscale__ticks">{radii.map((r) => <li>{r}</li>)}</ol>
+        </div>
+        <figcaption class="rscale__caption">Шиномонтаж легкових авто на легкосплавних дисках, комплект із 4 коліс: від {formatPrice(tyrePrice.from)} грн за {tyrePrice.fromRadius} до {formatPrice(tyrePrice.to)} грн за {tyrePrice.toRadius}.</figcaption>
+      </figure>
+
+      <div class="storage">
+        <h3 class="storage__title">Сезонне зберігання шин</h3>
+        <ul class="storage__list">
+          {storage.map((s) => (
+            <li class="storage__item"><span class="storage__price"><span class="price-num">{formatPrice(s.price)}</span> грн</span><span class="storage__meta">{s.radius}, за сезон</span></li>
+          ))}
+        </ul>
+        <p class="storage__note">З дисками: +50 грн за кожен диск.</p>
+      </div>
+
+      <div class="tyre-info">
+        <div>
+          <h3 class="tyre-info__title">Що робимо</h3>
+          <ul class="ticks">{tyreServices.map((s) => <li>{s}</li>)}</ul>
+        </div>
+        <div>
+          <h3 class="tyre-info__title">Для яких авто</h3>
+          <ul class="ticks">{vehicleTypes.map((s) => <li>{s}</li>)}</ul>
+          <p class="tyre-info__hours">Шиномонтаж працює і в суботу: {hours.saturday.time}.</p>
+        </div>
+      </div>
+
+      <div class="line-block__actions">
+        <CallButton line={tyres} label="Записатися на шиномонтаж" />
+      </div>
+    </div>
+  </div>
+</section>

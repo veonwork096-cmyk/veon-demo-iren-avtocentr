@@ -1,0 +1,54 @@
+---
+import Icon from "./Icon.astro";
+import Phone from "./Phone.astro";
+import { nav, lines, sto, viber } from "../data/site";
+---
+<header class="site-header">
+  <div class="container site-header__row">
+    <a class="wordmark" href="#top" aria-label="Ірен Автоцентр, на початок сторінки">
+      <span>ІРЕН</span> <span>АВТОЦЕНТР</span>
+    </a>
+
+    <nav class="nav" aria-label="Розділи сторінки" data-rec="W-R008">
+      <ul class="nav__list">
+        {nav.map((n) => <li><a class="nav__link" href={n.href}>{n.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <a class="header-call" href={sto.tel} data-rec="W-R001,W-R003">
+        <Icon name="phone" />
+        <span class="header-call__text"><span class="visually-hidden">СТО: </span><Phone phone={sto.phone} digit={sto.digit} /></span>
+      </a>
+      <a class="header-viber" href={viber.href}>
+        <Icon name="chat" />
+        <span class="header-viber__text">Viber</span>
+      </a>
+
+      <details class="menu" data-menu>
+        <summary class="menu__toggle" aria-label="Меню">
+          <Icon name="menu" class="menu__icon-open" />
+          <Icon name="close" class="menu__icon-close" />
+        </summary>
+        <div class="menu__panel">
+          <nav aria-label="Меню">
+            <ul class="menu__nav">
+              {nav.map((n) => <li><a class="menu__link" href={n.href}>{n.label}</a></li>)}
+            </ul>
+          </nav>
+          <ul class="menu__lines">
+            {lines.map((l) => (
+              <li>
+                <a class="menu__line" href={l.tel} data-rec="W-R003">
+                  <span class="menu__digit" aria-hidden="true">{l.digit}</span>
+                  <span class="menu__line-text"><span class="menu__line-name">{l.name}</span><Phone phone={l.phone} digit={l.digit} /></span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a class="btn btn--outline menu__viber" href={viber.href}><Icon name="chat" class="btn__icon" /><span class="btn__text"><span class="btn__label">Написати у Viber</span></span></a>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>

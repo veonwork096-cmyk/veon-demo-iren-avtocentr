@@ -1,0 +1,42 @@
+---
+import CallButton from "./CallButton.astro";
+import Icon from "./Icon.astro";
+import Phone from "./Phone.astro";
+import { lines, sto, viber, hours } from "../data/site";
+interface Props { h1: string; }
+const { h1 } = Astro.props;
+---
+<section id="hero" class="hero theme-brown" data-rec="W-R002,W-R014,W-R015" aria-labelledby="hero-title">
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      <h1 id="hero-title" class="hero__title">{h1}</h1>
+      <p class="hero__lead">Одна адреса, три лінії: дзвоніть одразу туди, де допоможуть.</p>
+      <div class="hero__actions">
+        <CallButton line={sto} label="Зателефонувати в СТО" stack rec="W-R002,W-R003" class="hero__call" />
+        <a class="btn btn--outline hero__viber" href={viber.href} data-rec="W-R002">
+          <Icon name="chat" class="btn__icon" />
+          <span class="btn__text"><span class="btn__label">Написати у Viber</span></span>
+        </a>
+      </div>
+      <p class="hero__hours">
+        <span>{hours.week.days} {hours.week.time}</span>
+        <span>{hours.saturday.days} {hours.saturday.time}, {hours.saturday.note}</span>
+      </p>
+    </div>
+
+    <ul class="lines" aria-label="Три телефонні лінії">
+      {lines.map((l, i) => (
+        <li class="lines__item" style={`--i:${i}`}>
+          <a class="line-row" href={l.tel} data-rec="W-R002,W-R003">
+            <span class="line-row__digit" aria-hidden="true">{l.digit}</span>
+            <span class="line-row__text">
+              <span class="line-row__name"><span class="line-row__long">{l.name}</span><span class="line-row__short" aria-hidden="true">{l.short}</span></span>
+              <span class="line-row__phone"><Phone phone={l.phone} digit={l.digit} /></span>
+            </span>
+            <Icon name="phone" class="line-row__icon" size={22} />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

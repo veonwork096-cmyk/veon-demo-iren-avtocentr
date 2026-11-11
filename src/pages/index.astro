@@ -1,0 +1,58 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Services from "../components/Services.astro";
+import Tyres from "../components/Tyres.astro";
+import Parts from "../components/Parts.astro";
+import Trust from "../components/Trust.astro";
+import Brands from "../components/Brands.astro";
+import Contacts from "../components/Contacts.astro";
+import Footer from "../components/Footer.astro";
+import CallBar from "../components/CallBar.astro";
+import { lines } from "../data/site";
+
+// H1 — exactly the veon-concept text (design/concept.md).
+const h1 = "СТО, шиномонтаж і автозапчастини у Львові — на Володимира Великого, 8а";
+const title = "СТО у Львові — шиномонтаж і автозапчастини | Ірен Автоцентр";
+const description = "СТО, шиномонтаж і автозапчастини на вул. Володимира Великого, 8а у Львові. Комп'ютерна діагностика — 500 грн, розвал-сходження на стенді Hunter — 1000 грн. 068 46 46 383.";
+
+// AutoRepair JSON-LD (concept 8.7, W-R019): address, three lines, hours exactly as W-F001.
+const intl = (p: string) => "+38" + p.replace(/\s/g, "");
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  name: "Ірен Автоцентр",
+  address: { "@type": "PostalAddress", streetAddress: "вулиця Володимира Великого, 8а", addressLocality: "Львів", addressCountry: "UA" },
+  telephone: intl(lines[0].phone),
+  openingHoursSpecification: [
+    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "20:00" },
+  ],
+  contactPoint: [
+    { "@type": "ContactPoint", contactType: "СТО сервіс", telephone: intl(lines[0].phone), availableLanguage: "uk" },
+    {
+      "@type": "ContactPoint", contactType: "Шиномонтаж", telephone: intl(lines[1].phone), availableLanguage: "uk",
+      hoursAvailable: [
+        { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "20:00" },
+        { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "16:00" },
+      ],
+    },
+    { "@type": "ContactPoint", contactType: "Автозапчастини", telephone: intl(lines[2].phone), availableLanguage: "uk" },
+  ],
+  priceRange: "250–4500 грн",
+};
+---
+<Base lang="uk" title={title} description={description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Header slot="header" />
+  <Hero h1={h1} />
+  <Services />
+  <Tyres />
+  <Parts />
+  <Trust />
+  <Brands />
+  <Contacts />
+  <Footer slot="footer" />
+  <CallBar slot="after" />
+</Base>
+<script src="../scripts/page.ts"></script>

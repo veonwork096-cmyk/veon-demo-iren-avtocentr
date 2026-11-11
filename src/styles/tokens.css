@@ -1,0 +1,87 @@
+/* Hallmark · shape: line-index · genre: editorial · theme: custom · job: book · idea: "Одна адреса — три лінії: 8, 7, 9; цифри трьох номерів ведуть від першого екрана до блоку своєї лінії й назад до контактів" · vibe: "теплий фасадний коричневий, наклонні цифри, прайс як головний текст"
+ * paper: #4A2617 · accent: #F2A06B · display: Geologica · body: IBM Plex Sans · hero: H1 з адресою, кнопка СТО з номером і Viber, праворуч колонка трьох цифр 8/7/9 — дзвінки на лінії · nav: коричнева шапка, словесний знак, 5 якорів, номер СТО і Viber; на телефоні дзвінок, бургер і нижня панель · footer: еспресо, три лінії, адреса, години, політика · imagery: client photos · signature: колонка наклонних цифр 8 · 7 · 9 — кожна цифра це своя телефонна лінія
+ * axes: brown/slanted-grotesk/copper · posture: committed · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H5 E4 S5 R4 V4 · weakest: imagery (only four low-res facade frames), kept them small in trust and let type and prices carry the page */
+/* Hallmark · waive 23 · the 8, 7, 9 line digits in copper take about 9 percent of the 1280 viewport · signature 8·7·9 из concept.md п.5: the digits are the navigation of the page, not decoration */
+/* Hallmark · waive 39b · a.btn 56px and the phone hero call 64px · concept.md 8.6 and 8.12 fix CallButton at 56px so the line name and the full number fit; on phones the number takes a second line */
+/* Hallmark · answered F25 · concept.md 8.2 asks for the first 12 of 28 brands on phones with «Показати всі 28»; the rest is one tap away, not cut */
+
+/* Self-hosted fonts (SIL OFL 1.1, licences in public/fonts). Geologica: wght + slnt variable; IBM Plex Sans: 400/600. */
+@font-face { font-family: "Geologica"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("../assets/fonts/geologica-cyrillic-slnt-normal.woff2") format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Geologica"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("../assets/fonts/geologica-latin-slnt-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Geologica"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("../assets/fonts/geologica-latin-ext-slnt-normal.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("../assets/fonts/ibm-plex-sans-cyrillic-400-normal.woff2") format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("../assets/fonts/ibm-plex-sans-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 600; font-display: swap; src: url("../assets/fonts/ibm-plex-sans-cyrillic-600-normal.woff2") format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 600; font-display: swap; src: url("../assets/fonts/ibm-plex-sans-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+/* Metric fallbacks: keep line breaks close while the web fonts load (CLS). */
+@font-face { font-family: "Geologica Fallback"; src: local("Arial"); size-adjust: 106%; ascent-override: 92%; descent-override: 24%; line-gap-override: 0%; }
+@font-face { font-family: "Plex Fallback"; src: local("Arial"); size-adjust: 101%; ascent-override: 101%; descent-override: 27%; line-gap-override: 0%; }
+
+/* Client design tokens — only from design/concept.md (veon-concept: colors, fonts; 8.3–8.5, 8.8). */
+:root {
+  /* palette (concept 8.3) */
+  --color-brown: #4A2617;
+  --color-espresso: #1E1613;
+  --color-stone: #ECE8E2;
+  --color-paper: #F7F2EC;
+  --color-copper: #F2A06B;
+  --color-copper-deep: #9C4416;
+  --color-muted-dark: #C9B8AB;
+  --color-muted-light: #5C504A;
+  --color-shadow: rgb(30 22 19 / 0.32);
+  --color-press: rgb(30 22 19 / 0.08);
+  --color-rule-dark: rgb(247 242 236 / 0.18);
+  --color-rule-light: rgb(30 22 19 / 0.16);
+
+  /* base roles (demo-base names) */
+  --color-bg: var(--color-brown);
+  --color-text: var(--color-paper);
+  --color-accent: var(--color-copper);
+
+  /* fonts (concept 8.4) */
+  --font-display: "Geologica", "Geologica Fallback", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Plex Fallback", system-ui, sans-serif;
+  --slant: "slnt" -10;
+
+  /* type scale (concept 8.12): 14 · 17 · 22 · 32 · 48 · 64; line digits 96–220 */
+  --fs-small: 0.875rem;
+  --fs-body: 1.0625rem;
+  --fs-lead: 1.375rem;
+  --fs-h3: 1.375rem;
+  --fs-h2: clamp(2rem, 1.5rem + 2.2vw, 3rem);
+  --fs-h1: clamp(2rem, 1.1rem + 3.4vw, 4rem);
+  --fs-price-xl: clamp(3.5rem, 2rem + 5vw, 6rem);
+  --fs-digit-hero: clamp(5rem, 2rem + 8vw, 9.375rem);
+  --fs-digit-line: clamp(6rem, 3rem + 9vw, 13.75rem);
+  --fs-digit-contact: clamp(4rem, 2.5rem + 5vw, 7.5rem);
+
+  /* spacing 4/8 rhythm (concept 8.5) */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4.5rem;
+  --space-7: 7.5rem;
+  --section-pad: clamp(4.5rem, 3rem + 4vw, 7.5rem);
+  --gutter: 1.5rem;
+  --space: clamp(1.25rem, 0.2rem + 3.6vw, 3.75rem);
+  --container: 1320px;
+
+  /* shape, sizes, motion (concept 8.5, 8.6, 8.8) */
+  --radius: 2px;
+  --header-h: 60px;
+  --tap: 44px;
+  --btn-h: 56px;
+  --callbar-h: 64px;
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --dur-fast: 200ms;
+  --dur-tab: 240ms;
+  --dur-bar: 260ms;
+  --dur-roll: 480ms;
+  --dur-scale: 700ms;
+  --dur: 600ms;
+}
+/* breakpoints: 640 · 768 · 1024 · 1280 (media queries cannot read custom properties) */
+@media (min-width: 1024px) { :root { --header-h: 72px; } }

@@ -1,0 +1,15 @@
+---
+// CallButton (concept 8.12): every call action names its line and shows the number (W-R003).
+import Icon from "./Icon.astro";
+import Phone from "./Phone.astro";
+import type { Line } from "../data/site";
+interface Props { line: Line; label?: string; variant?: "primary" | "outline"; stack?: boolean; rec?: string; class?: string; }
+const { line, label = `Зателефонувати: ${line.name.toLowerCase()}`, variant = "primary", stack = false, rec = "W-R003", class: cls } = Astro.props;
+---
+<a class:list={["btn", `btn--${variant}`, { "btn--stack": stack }, cls]} href={line.tel} data-rec={rec} data-line={line.digit}>
+  <Icon name="phone" class="btn__icon" />
+  <span class="btn__text">
+    <span class="btn__label">{label}</span>
+    <span class="btn__phone"><Phone phone={line.phone} digit={line.digit} /></span>
+  </span>
+</a>

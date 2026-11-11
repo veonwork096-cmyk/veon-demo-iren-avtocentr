@@ -1,0 +1,17 @@
+---
+import FutureLink from "./FutureLink.astro";
+import { brands } from "../data/site";
+---
+<section id="brands" class="brands theme-stone" aria-labelledby="brands-title">
+  <div class="container brands__grid">
+    <h2 id="brands-title" class="brands__title">28 марок, які обслуговуємо</h2>
+    <div class="brands__body">
+      <ul class="brands__list" id="brands-list" data-brands>
+        {brands.map((b, i) => (
+          <li class:list={["brands__item", { "brands__item--extra": i >= 12 }]}><FutureLink>{b}</FutureLink></li>
+        ))}
+      </ul>
+      <button type="button" class="btn btn--outline brands__more" aria-expanded="false" aria-controls="brands-list" data-brands-more hidden>Показати всі 28</button>
+    </div>
+  </div>
+</section>

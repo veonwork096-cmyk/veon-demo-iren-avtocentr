@@ -1,0 +1,29 @@
+---
+import LineAside from "./LineAside.astro";
+import CallButton from "./CallButton.astro";
+import { parts } from "../data/site";
+---
+<section id="parts" class="line-block theme-paper" data-rec="W-R003" aria-labelledby="parts-title">
+  <div class="container line-block__grid">
+    <LineAside line={parts} />
+    <div class="line-block__body">
+      <h2 id="parts-title" class="line-block__title">Запчастини, шини та диски</h2>
+      <div class="parts">
+        <p class="parts__claim">Підберемо й замовимо запчастини під вашу марку: оригінальні, неоригінальні та вживані, зокрема з Польщі. Доставка по Львову.</p>
+        <div class="parts__groups">
+          <div class="parts__group">
+            <h3>Шини</h3>
+            <p>Нові та вживані. Підбір шин і дисків за маркою авто.</p>
+          </div>
+          <div class="parts__group">
+            <h3>Диски</h3>
+            <p>Продаж нових і вживаних. Відновлення: піскоструминна обробка та порошкове фарбування.</p>
+          </div>
+        </div>
+      </div>
+      <div class="line-block__actions">
+        <CallButton line={parts} label="Замовити запчастини" />
+      </div>
+    </div>
+  </div>
+</section>

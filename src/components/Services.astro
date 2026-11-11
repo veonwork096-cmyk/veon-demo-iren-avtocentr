@@ -1,0 +1,64 @@
+---
+import LineAside from "./LineAside.astro";
+import CallButton from "./CallButton.astro";
+import FutureLink from "./FutureLink.astro";
+import Icon from "./Icon.astro";
+import { sto, priceGroups, alsoRepair, formatPrice } from "../data/site";
+---
+<section id="services" class="line-block theme-stone" data-rec="W-R003,W-R004" aria-labelledby="services-title">
+  <div class="container line-block__grid">
+    <LineAside line={sto} />
+    <div class="line-block__body">
+      <h2 id="services-title" class="line-block__title">Послуги СТО і ціни</h2>
+
+      <div class="hunter" data-rec="W-R004">
+        <div class="hunter__text">
+          <h3 class="hunter__title">Розвал-сходження</h3>
+          <p class="hunter__note">3D геометрія коліс на стенді Hunter</p>
+        </div>
+        <p class="hunter__price"><span class="price-num">{formatPrice(1000)}</span> <span class="hunter__cur">грн</span></p>
+      </div>
+
+      <div class="switcher" data-switcher data-rec="W-R004">
+        <div class="switcher__tabs" data-tabs aria-label="Групи послуг">
+          {priceGroups.map((g, i) => (
+            <button type="button" class="switcher__tab" id={`tab-${g.id}`} data-tab={g.id} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1}>{g.title}</button>
+          ))}
+        </div>
+        <div class="switcher__panels">
+          {priceGroups.map((g, i) => (
+            <div class:list={["switcher__panel", { "is-active": i === 0 }]} id={`panel-${g.id}`} data-panel={g.id}>
+              <h3 class="switcher__head">
+                <button type="button" class="switcher__acc" aria-expanded="true" aria-controls={`rows-${g.id}`} data-acc>
+                  <span>{g.title}</span>
+                  <Icon name="chevron" class="switcher__chev" />
+                </button>
+              </h3>
+              <div class="switcher__body" id={`rows-${g.id}`}>
+                <ul class="prices">
+                  {g.items.map((it) => (
+                    <li class="price-row">
+                      <span class="price-row__name">{it.name}</span>
+                      <span class="price-row__value">{it.from && <span class="price-row__from">від </span>}<span class="price-num">{formatPrice(it.price)}</span> грн</span>
+                    </li>
+                  ))}
+                </ul>
+                <FutureLink class="more-link">Детальніше: {g.title.toLowerCase()}</FutureLink>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="also">
+        <h3 class="also__title">Також ремонтуємо</h3>
+        <p class="also__list">{alsoRepair.join("; ")}. Ціну уточнюйте за телефоном СТО.</p>
+      </div>
+
+      <div class="line-block__actions">
+        <CallButton line={sto} label="Зателефонувати в СТО" />
+        <FutureLink class="more-link">Усі ціни</FutureLink>
+      </div>
+    </div>
+  </div>
+</section>

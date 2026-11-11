@@ -1,0 +1,23 @@
+---
+import FutureLink from "./FutureLink.astro";
+import Phone from "./Phone.astro";
+import { lines, address, hours } from "../data/site";
+---
+<footer class="site-footer theme-espresso">
+  <div class="container site-footer__grid">
+    <a class="wordmark site-footer__mark" href="#top" aria-label="Ірен Автоцентр, на початок сторінки"><span>ІРЕН</span> <span>АВТОЦЕНТР</span></a>
+    <ul class="site-footer__lines">
+      {lines.map((l) => (
+        <li><a href={l.tel}><span class="site-footer__digit" aria-hidden="true">{l.digit}</span><span>{`${l.name}:`}</span><Phone phone={l.phone} digit={l.digit} /></a></li>
+      ))}
+    </ul>
+    <div class="site-footer__info">
+      <p>{address.full}</p>
+      <p><span class="site-footer__time">{hours.week.days} {hours.week.time};</span> <span class="site-footer__time">{hours.saturday.days} {hours.saturday.time} ({hours.saturday.note})</span></p>
+    </div>
+    <div class="site-footer__legal">
+      <FutureLink class="more-link">Політика конфіденційності</FutureLink>
+      <p>© 2026 Ірен Автоцентр</p>
+    </div>
+  </div>
+</footer>

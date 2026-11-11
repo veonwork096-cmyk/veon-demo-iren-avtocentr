@@ -1,0 +1,10 @@
+---
+// Phones only: the fixed call bar after the first screen (W-R001).
+import Icon from "./Icon.astro";
+import { sto, tyres, viber } from "../data/site";
+---
+<nav class="callbar" aria-label="Швидкий зв'язок" data-callbar data-rec="W-R001,W-R003">
+  <a class="callbar__item callbar__item--main" href={sto.tel}><Icon name="phone" /><span>СТО <span class="callbar__num">383</span></span><span class="visually-hidden">, {sto.phone}</span></a>
+  <a class="callbar__item" href={viber.href}><Icon name="chat" /><span>Viber</span></a>
+  <a class="callbar__item callbar__item--tyres" href={tyres.tel}><Icon name="phone" class="callbar__icon" /><span>Шиномонтаж <span class="callbar__num">373</span></span><span class="visually-hidden">, {tyres.phone}</span></a>
+</nav>

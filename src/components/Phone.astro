@@ -1,0 +1,9 @@
+---
+// A phone number with the one digit that tells the three lines apart (8 / 7 / 9) set as the line accent.
+interface Props { phone: string; digit: string; }
+const { phone, digit } = Astro.props;
+const i = phone.lastIndexOf(digit);
+const head = phone.slice(0, i);
+const tail = phone.slice(i + 1);
+---
+<span class="phone">{head}<span class="phone__digit">{digit}</span>{tail}</span><span class="visually-hidden">,</span>

@@ -1,0 +1,14 @@
+---
+// The line digit of a block (signature 8 · 7 · 9): sticky in columns 1–3 on desktop, beside the H2 on phones.
+import Phone from "./Phone.astro";
+import type { Line } from "../data/site";
+interface Props { line: Line; }
+const { line } = Astro.props;
+---
+<div class="line-aside">
+  <span class="line-aside__digit" aria-hidden="true">{line.digit}</span>
+  <a class="line-aside__phone" href={line.tel} data-rec="W-R003">
+    <span class="line-aside__name">{line.name}</span>
+    <Phone phone={line.phone} digit={line.digit} />
+  </a>
+</div>

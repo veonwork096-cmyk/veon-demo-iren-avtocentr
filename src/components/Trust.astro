@@ -1,0 +1,40 @@
+---
+import FutureLink from "./FutureLink.astro";
+import { address } from "../data/site";
+const base = import.meta.env.BASE_URL;
+const photos = [
+  { n: 1, alt: "Будівля автоцентру з вітринами та написом «Автосервіс»" },
+  { n: 2, alt: "Фасад автоцентру вздовж вулиці, пісочні стіни та коричнева вежа" },
+  { n: 3, alt: "Коричнева вежа з написом «Ірен Автоцентр» над входом" },
+  { n: 4, alt: "Двір перед будівлею автоцентру" },
+];
+---
+<section id="trust" class="trust theme-brown" aria-labelledby="trust-title">
+  <div class="container">
+    <h2 id="trust-title" class="trust__title">Чому нам довіряють</h2>
+    <div class="trust__grid">
+      <p class="trust__years"><span class="trust__num">20</span> <span class="trust__unit">років досвіду</span></p>
+      <ul class="trust__facts">
+        <li><h3>Стенд Hunter</h3><p>Розвал-сходження з 3D геометрією коліс.</p></li>
+        <li><h3>Гарантія</h3><p>На всі види робіт.</p></li>
+      </ul>
+    </div>
+    <figure class="facade">
+      <ul class="facade__list">
+        {photos.map((p) => (
+          <li>
+            <picture>
+              <source srcset={`${base}img/facade-${p.n}.avif`} type="image/avif" />
+              <source srcset={`${base}img/facade-${p.n}.webp`} type="image/webp" />
+              <img src={`${base}img/facade-${p.n}.jpg`} alt={p.alt} width="360" height="360" loading="lazy" decoding="async" />
+            </picture>
+          </li>
+        ))}
+      </ul>
+      <figcaption class="facade__caption">
+        <span>Ірен Автоцентр, {address.street}</span>
+        <FutureLink class="more-link">Галерея</FutureLink>
+      </figcaption>
+    </figure>
+  </div>
+</section>
